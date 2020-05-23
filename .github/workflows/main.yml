@@ -21,7 +21,7 @@ jobs:
       DELETE: no
     steps:
       - run: |
-          export KOPS_STATE_STORE=s3://state.${CLUSTER_NAME}.yaml
+          export KOPS_STATE_STORE=s3://state.${CLUSTER_NAME}
           if [[ ! $(kops get cluster --name "$CLUSTER_NAME") ]]; then
             echo "Build Cluster"
             kops create -f ${CLUSTER_NAME}.yaml --name "$CLUSTER_NAME" -v 10
