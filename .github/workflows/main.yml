@@ -24,7 +24,7 @@ jobs:
           export KOPS_STATE_STORE=s3://state.${CLUSTER_NAME}.yaml
           if [[ ! $(kops get cluster --name "$CLUSTER_NAME") ]]; then
             echo "Build Cluster"
-            kops create -f cluster.yaml --name "$CLUSTER_NAME" -v 10
+            kops create -f ${CLUSTER_NAME}.yaml --name "$CLUSTER_NAME" -v 10
             kops create secret sshpublickey admin -i $SSH_KEY
           else
             echo "Update Cluster"
