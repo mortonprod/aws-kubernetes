@@ -1,0 +1,34 @@
+name: 'Deploy'
+on:
+  push: 
+    tags:
+      - v*
+
+jobs:
+  vm:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Start VM"
+  container:
+    runs-on: ubuntu-latest
+    container: mortonprod/deployment-image:v0.0.3
+    env:
+      CLUSTER_NAME: kubernetes.alexandermorton.co.uk
+      DELETE: no
+    steps:
+      - run: |
+          export KOPS_STATE_STORE=s3://state.${CLUSTER_NAME}.yaml
+          if [[ ! $(kops get cluster --name "$CLUSTER_NAME") ]]; then
+            echo "Build Cluster"
+            kops create -f cluster.yaml --name "$CLUSTER_NAME" -v 10
+            kops create secret sshpublickey admin -i $SSH_KEY
+          else
+            echo "Update Cluster"
+            kops update cluster --yes
+          fi
+          # If we specify delete then do all our updating and then delete
+          if [[ $DELETE == "yes" ]]; then
+            kops delete cluster $CLUSTER_NAME
+          fi
+
