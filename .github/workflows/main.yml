@@ -5,14 +5,11 @@ on:
       - v*
 
 jobs:
-  vm:
+  build:
     runs-on: ubuntu-latest
-    steps:
-      - run: |
-          echo "Start VM"
-  container:
-    runs-on: ubuntu-latest
-    container: mortonprod/deployment-image:v0.0.3
+    container:
+      image: mortonprod/deployment-image:v0.0.3
+      options: -v .:/app
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -21,6 +18,7 @@ jobs:
       DELETE: no
     steps:
       - run: |
+          cd /app
           export KOPS_STATE_STORE=s3://state.${CLUSTER_NAME}
           if [[ ! $(kops get cluster --name "$CLUSTER_NAME") ]]; then
             echo "Build Cluster"
