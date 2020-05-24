@@ -14,6 +14,10 @@ spec:
   etcdClusters:
   - cpuRequest: 200m
     etcdMembers:
+    - instanceGroup: master-eu-west-2a
+      name: a
+    - instanceGroup: master-eu-west-2b
+      name: b
     - instanceGroup: master-eu-west-2c
       name: c
     memoryRequest: 100Mi
@@ -21,6 +25,10 @@ spec:
     version: 3.2.24
   - cpuRequest: 100m
     etcdMembers:
+    - instanceGroup: master-eu-west-2a
+      name: a
+    - instanceGroup: master-eu-west-2b
+      name: b
     - instanceGroup: master-eu-west-2c
       name: c
     memoryRequest: 100Mi
@@ -43,6 +51,14 @@ spec:
   sshAccess:
   - 0.0.0.0/0
   subnets:
+  - cidr: 172.20.32.0/19
+    name: eu-west-2a
+    type: Public
+    zone: eu-west-2a
+  - cidr: 172.20.64.0/19
+    name: eu-west-2b
+    type: Public
+    zone: eu-west-2b
   - cidr: 172.20.96.0/19
     name: eu-west-2c
     type: Public
@@ -55,6 +71,47 @@ spec:
 
 ---
 
+apiVersion: kops.k8s.io/v1alpha2
+kind: InstanceGroup
+metadata:
+  creationTimestamp: null
+  labels:
+    kops.k8s.io/cluster: kubernetes.alexandermorton.co.uk
+  name: master-eu-west-2a
+spec:
+  image: kope.io/k8s-1.15-debian-stretch-amd64-hvm-ebs-2020-01-17
+  machineType: t3.micro
+  maxPrice: "0.0071"
+  maxSize: 1
+  minSize: 1
+  nodeLabels:
+    kops.k8s.io/instancegroup: master-eu-west-2a
+  role: Master
+  subnets:
+  - eu-west-2a
+
+---
+
+apiVersion: kops.k8s.io/v1alpha2
+kind: InstanceGroup
+metadata:
+  creationTimestamp: null
+  labels:
+    kops.k8s.io/cluster: kubernetes.alexandermorton.co.uk
+  name: master-eu-west-2b
+spec:
+  image: kope.io/k8s-1.15-debian-stretch-amd64-hvm-ebs-2020-01-17
+  machineType: t3.micro
+  maxPrice: "0.0071"
+  maxSize: 1
+  minSize: 1
+  nodeLabels:
+    kops.k8s.io/instancegroup: master-eu-west-2b
+  role: Master
+  subnets:
+  - eu-west-2b
+
+---
 
 apiVersion: kops.k8s.io/v1alpha2
 kind: InstanceGroup
@@ -65,7 +122,7 @@ metadata:
   name: master-eu-west-2c
 spec:
   image: kope.io/k8s-1.15-debian-stretch-amd64-hvm-ebs-2020-01-17
-  machineType: t3.small
+  machineType: t3.micro
   maxPrice: "0.0071"
   maxSize: 1
   minSize: 1
