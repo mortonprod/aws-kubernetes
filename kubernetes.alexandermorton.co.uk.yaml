@@ -14,10 +14,6 @@ spec:
   etcdClusters:
   - cpuRequest: 200m
     etcdMembers:
-    - instanceGroup: master-eu-west-2a
-      name: a
-    - instanceGroup: master-eu-west-2b
-      name: b
     - instanceGroup: master-eu-west-2c
       name: c
     memoryRequest: 100Mi
@@ -25,10 +21,6 @@ spec:
     version: 3.2.24
   - cpuRequest: 100m
     etcdMembers:
-    - instanceGroup: master-eu-west-2a
-      name: a
-    - instanceGroup: master-eu-west-2b
-      name: b
     - instanceGroup: master-eu-west-2c
       name: c
     memoryRequest: 100Mi
@@ -51,14 +43,6 @@ spec:
   sshAccess:
   - 0.0.0.0/0
   subnets:
-  - cidr: 172.20.32.0/19
-    name: eu-west-2a
-    type: Public
-    zone: eu-west-2a
-  - cidr: 172.20.64.0/19
-    name: eu-west-2b
-    type: Public
-    zone: eu-west-2b
   - cidr: 172.20.96.0/19
     name: eu-west-2c
     type: Public
