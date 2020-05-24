@@ -37,8 +37,8 @@ kops create cluster  \
     --zones=eu-west-1a,eu-west-1b,eu-west-1c \
     --cloud=aws \
     --kubernetes-version v1.15.0 \
-    --master-count=1 \
-    --master-size t3.micro \
+    --master-count=3 \
+    --master-size t3.small \
     --name=kubernetes.alexandermorton.co.uk \
     --networking=calico \
     --node-count=1 \
