@@ -15,7 +15,7 @@ jobs:
       AWS_DEFAULT_REGION: eu-west-2
       CLUSTER_NAME: kubernetes.alexandermorton.co.uk
       SSH_KEY: ${{ secrets.SSH_KEY }}
-      DELETE: no
+      DELETE: yes
     steps:
       - name: 'Checkout'
         uses: actions/checkout@v1
@@ -30,7 +30,8 @@ jobs:
             if [[ ! $(kops get cluster --name "$CLUSTER_NAME") ]]; then
               echo "Build Cluster"
               kops create -f ${CLUSTER_NAME}.yaml --name "$CLUSTER_NAME" -v 10
-              echo $SSH_KEY | kops create secret sshpublickey admin -i /dev/stdin
+              kops update cluster --name $CLUSTER_NAME --yes
+              echo $SSH_KEY | kops create --name "$CLUSTER_NAME" secret sshpublickey admin -i /dev/stdin
             else
               echo "Update Cluster"
               kops replace --force -f "${CLUSTER_NAME}.yaml"
