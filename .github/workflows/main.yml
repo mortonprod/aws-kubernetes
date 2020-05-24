@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: mortonprod/deployment-image:v0.0.3
-      options: -v `pwd`:/app
+      # options: -v `pwd`:/app
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -18,7 +18,8 @@ jobs:
       DELETE: no
     steps:
       - run: |
-          cd /app
+          pwd
+          ls
           export KOPS_STATE_STORE=s3://state.${CLUSTER_NAME}
           if [[ ! $(kops get cluster --name "$CLUSTER_NAME") ]]; then
             echo "Build Cluster"
