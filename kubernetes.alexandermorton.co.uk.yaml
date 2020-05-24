@@ -71,47 +71,6 @@ spec:
 
 ---
 
-apiVersion: kops.k8s.io/v1alpha2
-kind: InstanceGroup
-metadata:
-  creationTimestamp: null
-  labels:
-    kops.k8s.io/cluster: kubernetes.alexandermorton.co.uk
-  name: master-eu-west-2a
-spec:
-  image: kope.io/k8s-1.15-debian-stretch-amd64-hvm-ebs-2020-01-17
-  machineType: t3.small
-  maxPrice: "0.0071"
-  maxSize: 1
-  minSize: 1
-  nodeLabels:
-    kops.k8s.io/instancegroup: master-eu-west-2a
-  role: Master
-  subnets:
-  - eu-west-2a
-
----
-
-apiVersion: kops.k8s.io/v1alpha2
-kind: InstanceGroup
-metadata:
-  creationTimestamp: null
-  labels:
-    kops.k8s.io/cluster: kubernetes.alexandermorton.co.uk
-  name: master-eu-west-2b
-spec:
-  image: kope.io/k8s-1.15-debian-stretch-amd64-hvm-ebs-2020-01-17
-  machineType: t3.small
-  maxPrice: "0.0071"
-  maxSize: 1
-  minSize: 1
-  nodeLabels:
-    kops.k8s.io/instancegroup: master-eu-west-2b
-  role: Master
-  subnets:
-  - eu-west-2b
-
----
 
 apiVersion: kops.k8s.io/v1alpha2
 kind: InstanceGroup
