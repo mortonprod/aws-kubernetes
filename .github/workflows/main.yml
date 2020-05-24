@@ -32,7 +32,6 @@ jobs:
               echo $SSH_KEY >> ~/.ssh/id_rsa.pub
               echo $SSH_KEY | kops create --name "$CLUSTER_NAME" secret sshpublickey admin -i ~/.ssh/id_rsa.pub
               kops update cluster --name $CLUSTER_NAME --yes
-              kops rolling-update cluster --yes
             else
               echo "Update Cluster"
               kops replace --force -f "${CLUSTER_NAME}.yaml"
