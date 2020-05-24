@@ -14,6 +14,7 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_DEFAULT_REGION: eu-west-2
       CLUSTER_NAME: kubernetes.alexandermorton.co.uk
+      SSH_KEY: ${{ secrets.SSH_KEY }}
       DELETE: no
     steps:
       - name: 'Checkout'
