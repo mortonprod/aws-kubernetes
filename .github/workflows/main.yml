@@ -32,7 +32,7 @@ jobs:
           else
             echo "Update Cluster"
             kops replace --force -f $CLUSTER_NAME
-            kops update cluster --name "$CLUSTER_NAME --yes
+            kops update cluster --name $CLUSTER_NAME --yes
           fi
           # If we specify delete then do all our updating and then delete
           if [[ $DELETE == "yes" ]]; then
