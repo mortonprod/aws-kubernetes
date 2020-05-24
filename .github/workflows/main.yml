@@ -31,7 +31,8 @@ jobs:
             kops create secret sshpublickey admin -i $SSH_KEY
           else
             echo "Update Cluster"
-            kops update cluster --yes
+            kops replace --force -f $CLUSTER_NAME
+            kops update cluster --name "$CLUSTER_NAME --yes
           fi
           # If we specify delete then do all our updating and then delete
           if [[ $DELETE == "yes" ]]; then
