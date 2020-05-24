@@ -25,17 +25,17 @@ jobs:
           pwd
           ls
           export KOPS_STATE_STORE=s3://state.${CLUSTER_NAME}
-          if [[ ! $(kops get cluster --name "$CLUSTER_NAME") ]]; then
-            echo "Build Cluster"
-            kops create -f ${CLUSTER_NAME}.yaml --name "$CLUSTER_NAME" -v 10
-            kops create secret sshpublickey admin -i $SSH_KEY
+          if [[ $DELETE == "no" ]]; then
+            if [[ ! $(kops get cluster --name "$CLUSTER_NAME") ]]; then
+              echo "Build Cluster"
+              kops create -f ${CLUSTER_NAME}.yaml --name "$CLUSTER_NAME" -v 10
+              kops create secret sshpublickey admin -i $SSH_KEY
+            else
+              echo "Update Cluster"
+              kops replace --force -f "${CLUSTER_NAME}.yaml"
+              kops update cluster --name $CLUSTER_NAME --yes
+            fi
           else
-            echo "Update Cluster"
-            kops replace --force -f "${CLUSTER_NAME}.yaml"
-            kops update cluster --name $CLUSTER_NAME --yes
-          fi
-          # If we specify delete then do all our updating and then delete
-          if [[ $DELETE == "yes" ]]; then
             kops delete cluster $CLUSTER_NAME
           fi
 
