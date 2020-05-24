@@ -5,16 +5,16 @@ Spot instances
 ## Micro
 
 * t3.micro	$0.0035 per Hour
-** Total per month = 2.52
+  * Total per month = 2.52
 
 ## Small
 * t3.small	$0.0071 per Hour
-** Total per month = 5.112
+  * Total per month = 5.112
 
 ## xLarge
 
 * t3.xlarge	$0.0566 per Hour
-** Total per month = 40.32
+  * Total per month = 40.32
 
 ## EBS
 
@@ -24,12 +24,12 @@ Spot instances
 # Setup Requirements
 
 * Will need to be able to start and stop the system.
-** Remove all master and worker nodes
-** Need to be able to deploy all pods we had in pipeline
+  * Remove all master and worker nodes
+  * Need to be able to deploy all pods we had in pipeline
 * Need to be able to store data and reattach
-** This mean attaching old EBS volumes with data we plan to keep
-** Also means ditching EBS volumes we stored old cluster state in
-** Back up lots of data to s3
+  * This mean attaching old EBS volumes with data we plan to keep
+  * Also means ditching EBS volumes we stored old cluster state in
+  * Back up lots of data to s3
 
 
 # Initial
