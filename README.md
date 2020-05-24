@@ -1,18 +1,20 @@
 # Costs
 
+Spot instances
+
 ## Micro
 
-* t3.micro	$0.006 per Hour	$0.008 per Hour
-** Total per month = 5.76
+* t3.micro	$0.0035 per Hour
+** Total per month = 2.52
 
 ## Small
-* t3.small	$0.013 per Hour	$0.017 per Hour
-** Total per month = 12.24
+* t3.small	$0.0071 per Hour
+** Total per month = 5.112
 
 ## xLarge
 
-* t3.xlarge	$0.104 per Hour	$0.132 per Hour
-** Total per month = 95.04
+* t3.xlarge	$0.0566 per Hour
+** Total per month = 40.32
 
 ## EBS
 
@@ -34,7 +36,7 @@
 
 ```bash
 kops create cluster  \
-    --zones=eu-west-1a,eu-west-1b,eu-west-1c \
+    --zones=eu-west-2a,eu-west-2b,eu-west-2c \
     --cloud=aws \
     --kubernetes-version v1.15.0 \
     --master-count=3 \
