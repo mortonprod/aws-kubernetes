@@ -36,6 +36,6 @@ jobs:
               kops update cluster --name $CLUSTER_NAME --yes
             fi
           else
-            kops delete cluster $CLUSTER_NAME
+            kops delete cluster $CLUSTER_NAME --yes
           fi
 
