@@ -28,10 +28,10 @@ jobs:
             if [[ ! $(kops get cluster --name "$CLUSTER_NAME") ]]; then
               echo "Build Cluster"
               kops create -f ${CLUSTER_NAME}.yaml --name "$CLUSTER_NAME" -v 10
-              kops update cluster --name $CLUSTER_NAME --yes
               mkdir ~/.ssh/
               echo $SSH_KEY >> ~/.ssh/id_rsa.pub
-              echo $SSH_KEY | kops create --name "$CLUSTER_NAME" secret sshpublickey admin -i /dev/stdin
+              echo $SSH_KEY | kops create --name "$CLUSTER_NAME" secret sshpublickey admin -i ~/.ssh/id_rsa.pub
+              kops update cluster --name $CLUSTER_NAME --yes
             else
               echo "Update Cluster"
               kops replace --force -f "${CLUSTER_NAME}.yaml"
