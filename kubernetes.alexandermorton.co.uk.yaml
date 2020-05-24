@@ -41,7 +41,7 @@ spec:
     anonymousAuth: false
   kubernetesApiAccess:
   - 0.0.0.0/0
-  kubernetesVersion: v1.15.0
+  kubernetesVersion: v1.18.0
   masterPublicName: api.kubernetes.alexandermorton.co.uk
   networkCIDR: 172.20.0.0/16
   networking:
@@ -79,7 +79,7 @@ metadata:
     kops.k8s.io/cluster: kubernetes.alexandermorton.co.uk
   name: master-eu-west-2a
 spec:
-  image: kope.io/k8s-1.15-debian-stretch-amd64-hvm-ebs-2020-01-17
+  image: kope.io/k8s-1.17-debian-stretch-amd64-hvm-ebs-2020-01-17
   machineType: t3.small
   maxPrice: "0.0071"
   maxSize: 1
@@ -100,7 +100,7 @@ metadata:
     kops.k8s.io/cluster: kubernetes.alexandermorton.co.uk
   name: master-eu-west-2b
 spec:
-  image: kope.io/k8s-1.15-debian-stretch-amd64-hvm-ebs-2020-01-17
+  image: kope.io/k8s-1.17-debian-stretch-amd64-hvm-ebs-2020-01-17
   machineType: t3.small
   maxPrice: "0.0071"
   maxSize: 1
@@ -121,7 +121,7 @@ metadata:
     kops.k8s.io/cluster: kubernetes.alexandermorton.co.uk
   name: master-eu-west-2c
 spec:
-  image: kope.io/k8s-1.15-debian-stretch-amd64-hvm-ebs-2020-01-17
+  image: kope.io/k8s-1.17-debian-stretch-amd64-hvm-ebs-2020-01-17
   machineType: t3.small
   maxPrice: "0.0071"
   maxSize: 1
@@ -142,7 +142,7 @@ metadata:
     kops.k8s.io/cluster: kubernetes.alexandermorton.co.uk
   name: nodes
 spec:
-  image: kope.io/k8s-1.15-debian-stretch-amd64-hvm-ebs-2020-01-17
+  image: kope.io/k8s-1.17-debian-stretch-amd64-hvm-ebs-2020-01-17
   machineType: t3.xlarge
   maxPrice: "0.0566"
   maxSize: 1

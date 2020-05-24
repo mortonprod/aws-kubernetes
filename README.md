@@ -38,9 +38,9 @@ Spot instances
 kops create cluster  \
     --zones=eu-west-2a,eu-west-2b,eu-west-2c \
     --cloud=aws \
-    --kubernetes-version v1.15.0 \
+    --kubernetes-version v1.18.0 \
     --master-count=3 \
-    --master-size t3.micro \
+    --master-size t3.small \
     --name=kubernetes.alexandermorton.co.uk \
     --networking=calico \
     --node-count=1 \
