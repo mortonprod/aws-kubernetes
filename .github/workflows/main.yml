@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: mortonprod/deployment-image:v0.0.3
-      # options: -v `pwd`:/app
+      options: -v $HOME:/__w/aws-kubernetes/aws-kubernetes
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
