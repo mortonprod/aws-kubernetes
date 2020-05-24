@@ -24,6 +24,7 @@ jobs:
           token: ${{ secrets.GITHUB_REPO_TOKEN }}
       - run: |
           export KOPS_STATE_STORE=s3://state.${CLUSTER_NAME}
+          mkdir ~/.ssh/
           echo $SSH_KEY >> ~/.ssh/id_rsa.pub
           echo $SSH_KEY | kops create --name "$CLUSTER_NAME" secret sshpublickey admin -i ~/.ssh/id_rsa.pub
           kops update cluster --name $CLUSTER_NAME --yes
