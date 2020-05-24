@@ -81,7 +81,6 @@ metadata:
 spec:
   image: kope.io/k8s-1.15-debian-stretch-amd64-hvm-ebs-2020-01-17
   machineType: t3.micro
-  maxPrice: "0.0071"
   maxSize: 1
   minSize: 1
   nodeLabels:
@@ -102,7 +101,6 @@ metadata:
 spec:
   image: kope.io/k8s-1.15-debian-stretch-amd64-hvm-ebs-2020-01-17
   machineType: t3.micro
-  maxPrice: "0.0071"
   maxSize: 1
   minSize: 1
   nodeLabels:
@@ -123,7 +121,6 @@ metadata:
 spec:
   image: kope.io/k8s-1.15-debian-stretch-amd64-hvm-ebs-2020-01-17
   machineType: t3.micro
-  maxPrice: "0.0071"
   maxSize: 1
   minSize: 1
   nodeLabels:
@@ -144,7 +141,6 @@ metadata:
 spec:
   image: kope.io/k8s-1.15-debian-stretch-amd64-hvm-ebs-2020-01-17
   machineType: t3.xlarge
-  maxPrice: "0.0566"
   maxSize: 1
   minSize: 1
   nodeLabels:
