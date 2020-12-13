@@ -11,20 +11,29 @@ spec:
   channel: stable
   cloudProvider: aws
   configBase: s3://state.kubernetes.alexandermorton.co.uk/kubernetes.alexandermorton.co.uk
-  containerRuntime: docker
   etcdClusters:
   - cpuRequest: 200m
     etcdMembers:
     - instanceGroup: master-eu-west-2a
       name: a
+    - instanceGroup: master-eu-west-2b
+      name: b
+    - instanceGroup: master-eu-west-2c
+      name: c
     memoryRequest: 100Mi
     name: main
+    version: 3.2.24
   - cpuRequest: 100m
     etcdMembers:
     - instanceGroup: master-eu-west-2a
       name: a
+    - instanceGroup: master-eu-west-2b
+      name: b
+    - instanceGroup: master-eu-west-2c
+      name: c
     memoryRequest: 100Mi
     name: events
+    version: 3.2.24
   iam:
     allowContainerRegistry: true
     legacy: false
@@ -36,8 +45,8 @@ spec:
   masterPublicName: api.kubernetes.alexandermorton.co.uk
   networkCIDR: 172.20.0.0/16
   networking:
-    flannel:
-      backend: vxlan
+    calico:
+      majorVersion: v3
   nonMasqueradeCIDR: 100.64.0.0/10
   sshAccess:
   - 0.0.0.0/0
@@ -70,7 +79,7 @@ metadata:
     kops.k8s.io/cluster: kubernetes.alexandermorton.co.uk
   name: master-eu-west-2a
 spec:
-  image: 099720109477/ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-20201026
+  image: kope.io/k8s-1.17-debian-stretch-amd64-hvm-ebs-2020-01-17
   machineType: t3.micro
   maxPrice: "0.004"
   maxSize: 1
@@ -80,3 +89,45 @@ spec:
   role: Master
   subnets:
   - eu-west-2a
+
+---
+
+apiVersion: kops.k8s.io/v1alpha2
+kind: InstanceGroup
+metadata:
+  creationTimestamp: null
+  labels:
+    kops.k8s.io/cluster: kubernetes.alexandermorton.co.uk
+  name: master-eu-west-2b
+spec:
+  image: kope.io/k8s-1.17-debian-stretch-amd64-hvm-ebs-2020-01-17
+  machineType: t3.micro
+  maxPrice: "0.004"
+  maxSize: 1
+  minSize: 1
+  nodeLabels:
+    kops.k8s.io/instancegroup: master-eu-west-2b
+  role: Master
+  subnets:
+  - eu-west-2b
+
+---
+
+apiVersion: kops.k8s.io/v1alpha2
+kind: InstanceGroup
+metadata:
+  creationTimestamp: null
+  labels:
+    kops.k8s.io/cluster: kubernetes.alexandermorton.co.uk
+  name: master-eu-west-2c
+spec:
+  image: kope.io/k8s-1.17-debian-stretch-amd64-hvm-ebs-2020-01-17
+  machineType: t3.micro
+  maxPrice: "0.004"
+  maxSize: 1
+  minSize: 1
+  nodeLabels:
+    kops.k8s.io/instancegroup: master-eu-west-2c
+  role: Master
+  subnets:
+  - eu-west-2c
